@@ -14,12 +14,12 @@ body {
   min-width: 375px;
   margin: 0 auto;
   padding: 24px 0 12px 0;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  background: none;
+  box-shadow: none;
   position: sticky;
   top: 0;
   z-index: 10;
-  border-radius: 18px;
+  border-radius: 0;
 }
 
 .timeline {
@@ -75,9 +75,9 @@ body {
   overflow: hidden;
   position: relative;
   height: 520px;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
   display: none;
   position: relative;
   animation: fadeIn 0.5s;
@@ -106,6 +106,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .story-page.active {
