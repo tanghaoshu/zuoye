@@ -5,16 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const storySlider = document.querySelector('.story-slider');
   const backBtn = document.querySelector('.back-btn');
   let currentIdx = 0;
-  const years = Array.from(nodes).map(node => node.getAttribute('data-year'));
 
   function showPage(idx, direction = 0) {
     pages.forEach((page, i) => {
       page.classList.remove('active', 'exit-left', 'exit-right');
       if (i === idx) {
         page.classList.add('active');
-        // GSAP 文字淡入、圖片縮放
-        gsap.fromTo(page.querySelector('p'), {opacity: 0, y: 24}, {opacity: 1, y: 0, duration: 0.6, delay: 0.2});
-        gsap.fromTo(page.querySelector('img'), {opacity: 0, scale: 0.92}, {opacity: 1, scale: 1, duration: 0.6, delay: 0.35});
+        // 動畫
+        if (window.gsap) {
+          gsap.fromTo(page.querySelector('p'), {opacity: 0, y: 24}, {opacity: 1, y: 0, duration: 0.6, delay: 0.2});
+          gsap.fromTo(page.querySelector('img'), {opacity: 0, scale: 0.92}, {opacity: 1, scale: 1, duration: 0.6, delay: 0.35});
+        }
       } else {
         if (direction < 0 && i < idx) {
           page.classList.add('exit-left');
@@ -25,9 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     });
-    nodes.forEach((node, i) => {
-      node.classList.toggle('active', i === idx);
-    });
     currentIdx = idx;
   }
 
@@ -35,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   nodes.forEach((node, idx) => {
     node.addEventListener('click', () => {
       mainPage.style.display = 'none';
+      storySlider.style.display = 'block';
       storySlider.classList.add('active');
       showPage(idx);
     });
@@ -43,9 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // 返回首頁
   backBtn.addEventListener('click', () => {
     storySlider.classList.remove('active');
-    setTimeout(() => {
-      mainPage.style.display = 'block';
-    }, 300);
+    storySlider.style.display = 'none';
+    mainPage.style.display = 'block';
   });
 
   // 故事頁左右滑動切換
